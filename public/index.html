@@ -24,32 +24,7 @@
     -->
   <title>React App</title>
   <script>
-    const fs = require('fs');
-
-    function writeFile(fileURL, content) {
-      fs.writeFileSync(new URL(fileURL), content, {
-        encoding: encoding
-      });
-    }
-
-    function clickWarning(id) {
-      // writeFile("./data/c.js", "");
-      $.getJSON('users .json', function (data) {
-        $.each(data.user, function (i, f) {
-          // Do something here
-        });
-
-      });
-      var ele = document.getElementById('w' + id).classList;
-      if (ele.length === 3) ele.add('warning');
-      else ele.remove('warning');
-    }
-
-    function clickCheck(id) {
-      var ele = document.getElementById('c' + id).classList;
-      if (ele.length === 3) ele.add('checker');
-      else ele.remove('checker');
-    }
+    
   </script>
 </head>
 

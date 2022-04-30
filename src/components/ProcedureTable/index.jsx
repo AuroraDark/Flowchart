@@ -50,11 +50,11 @@ const ProcedureTable = () => {
   };
 
   useEffect(() => {
-    y.current.addEventListener("scroll", handleScroll);
+    // y.current.addEventListener("scroll", handleScroll);
 
-    return () => {
-      y.current.removeEventListener("scroll", handleScroll);
-    };
+    // return () => {
+    //   y.current.removeEventListener("scroll", handleScroll);
+    // };
   }, []);
 
   /////////////   getting redux variable of scroll y position

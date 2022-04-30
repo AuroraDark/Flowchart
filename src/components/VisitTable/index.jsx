@@ -38,11 +38,11 @@ const VisitTable = () => {
   };
 
   useEffect(() => {
-    x.current.addEventListener("scroll", handleScroll);
+    // x.current.addEventListener("scroll", handleScroll);
     
-    return () => {
-      x.current.removeEventListener("scroll", handleScroll);
-    };
+    // return () => {
+    //   x.current.removeEventListener("scroll", handleScroll);
+    // };
   }, []);
 
   /////////////   getting redux variable of scroll x position
