@@ -32,11 +32,9 @@
     "write-json-file": "^5.0.0"
   },
   "scripts": {
-    "install:front": "npm install",
-    "install:server": "cd src/server && npm install",
-    "front": "react-scripts start",
-    "server": "cd src/server && npm start --port 3001",
-    "start": "npm-run-all --parallel front server",
+    "install:front": "npm install",    
+    "front": "react-scripts start",    
+    "start": "npm-run-all --parallel front",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -62,8 +60,6 @@
   "devDependencies": {
     "npm-run-all": "^4.1.5",
     "sass": "^1.50.0"
-  },
-  "browser": {
-    "fs": false
   }
+  
 }

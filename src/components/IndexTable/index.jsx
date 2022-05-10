@@ -23,13 +23,13 @@ function createData(details, alpha, visit) {
     return { details, alpha, visit };
 }
 
-const IndexTable = () => {
+const IndexTable = (props) => {
 
     ///////////// to get redux variable
     const storeValue = useSelector((store) => store)
-    useEffect(()=>{
-        console.log(storeValue.CountReducer)
-    }, [])
+    // useEffect(()=>{
+    //     console.log(storeValue.CountReducer)
+    // }, [])
     ////////////// to get redux variable
 
     const rows = [
@@ -70,7 +70,7 @@ const IndexTable = () => {
                 >
                     <Table >
                         <TableHead>
-                            <TableRow>
+                            <TableRow sx={{height:"73px"}}>
                                 <TableCell>
                                     <Button
                                         variant="contained"
@@ -97,8 +97,8 @@ const IndexTable = () => {
                         <TableBody>
                             {rows.map((row, index) => (
                                 <TableRow
-                                    key={index}
-                                    hover={true}                                    
+                                    key={index} 
+                                    sx={{height:"37px"}}                                                                   
                                 >
                                     <TableCell>
                                         {row.details}
@@ -112,7 +112,7 @@ const IndexTable = () => {
                 </Box>
             </TableContainer>
 
-            <AddVisit handleClose={handleClose} open={open} />
+            <AddVisit handleClose={handleClose} open={open} token={props.token} />
 
         </Fragment>
     );
