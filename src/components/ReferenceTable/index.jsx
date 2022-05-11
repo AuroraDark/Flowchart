@@ -61,7 +61,7 @@ const ReferenceTable = (props) => {
   }, []);
 
   if (reference.length > 0) {
-    let tmp = reference[0].co_visita;
+    let tmp = reference[0].co_protocolo_procedimento;
     let resultTr = [],
     tmpTr = [];    
     // return <>{reference.map((data) => data.co_visita)}</>;
@@ -81,7 +81,7 @@ const ReferenceTable = (props) => {
           <table className="reference-table">
             <tbody>
               {reference.map((data) => {
-                if (tmp == data.co_visita) {
+                if (tmp == data.co_protocolo_procedimento) {
                   tmpTr.push(
                     <ReferenceItem
                       key={data.id}
@@ -93,9 +93,19 @@ const ReferenceTable = (props) => {
                     />
                   );
                 } else {                  
-                  tmp = data.co_visita;
+                  tmp = data.co_protocolo_procedimento;
                   resultTr = [...tmpTr];
                   tmpTr = [];
+                  tmpTr.push(
+                    <ReferenceItem
+                      key={data.id}
+                      id={data.id}
+                      idA={data.co_visita}
+                      idB={data.co_protocolo_procedimento}
+                      display={data.disponibilidade}
+                      token={props.token}
+                    />
+                  );
                   return (
                     <CustomizeTR key={data.co_visita} children={resultTr} />
                   );
