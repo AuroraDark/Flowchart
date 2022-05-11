@@ -29,19 +29,19 @@ const ReferenceItem = (props) => {
        
   };
 
-  // const longText = (
-  //   <div>
-  //     <div>id: {props.id}</div>
-  //     <div>id_a: {props.idA}</div>
-  //     <div>id_b:{props.idB}</div>
-  //     <div>display: {props.display}</div>
-  //   </div>
-  // );
+  const longText = (
+    <div>
+      <div>id: {props.id}</div>
+      <div>id_a: {props.idA}</div>
+      <div>id_b:{props.idB}</div>
+      <div>display: {display}</div>
+    </div>
+  );
 
   {
     return (
       <td className="reference-item">
-        {/* <Tooltip title={longText}> */}
+        <Tooltip title={longText}>
         <Stack direction="row" spacing={1} style={{ width: "inherit" }}>
           <IconButton
             aria-label="warning amber"
@@ -58,7 +58,7 @@ const ReferenceItem = (props) => {
             <CheckCircleOutlineIcon fontSize="small" />
           </IconButton>
         </Stack>
-        {/* </Tooltip> */}
+        </Tooltip>
       </td>
     );
   }
