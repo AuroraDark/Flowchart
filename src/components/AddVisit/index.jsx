@@ -77,7 +77,7 @@ const AddVisit = ({ handleClose, open, token }) => {
   const [observacoes, setObservacoes] = useState("");
   const [newVisitId, setNewVisitId] = useState(0);
   const [newVisitRemark, setNewVisitRemark] = useState("");
-//   const [replicar, setReplicar] = useState("");
+  const [replicar, setReplicar] = useState("");
   const sendData = {
     "co_protocolo": 77,
     "nome_visita": visita,
