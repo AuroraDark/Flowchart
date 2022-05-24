@@ -10,9 +10,6 @@ In the project directory, you can run:
 ### `npm run install:front`
 Install node modules in root directory.
 
-### `npm run install:server`
-Install node modules in src/server directory.
-
 ## Run the app
 
 ### `npm start`
