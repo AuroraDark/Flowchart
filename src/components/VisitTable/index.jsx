@@ -92,8 +92,7 @@ const VisitTable = (props) => {
           {visit.map((data, index) => {
             return (
               <Table
-                className={style.tableMargin}
-                sx={{ width: "177px", padding: "14px" }}
+                sx={{ width: "177px" }}
                 style={{ borderCollapse: "collapse" }}
                 key={index}
               >
@@ -135,7 +134,9 @@ const VisitTable = (props) => {
                   </TableRow>
                   <TableRow sx={{ height: "37px" }}>
                     <TableCell>
-                      {data.intervalo_referencia == 1 ? "Inclusao" : "Fim do tratamento"}
+                      {data.intervalo_referencia == 1
+                        ? "Inclusao"
+                        : "Fim do tratamento"}
                       {/* {
                       ()=>{
                         if(data.intervalo_referencia == 1) 

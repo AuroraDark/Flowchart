@@ -9,12 +9,9 @@ import style from "./style.module.scss";
 import Tooltip from "@mui/material/Tooltip";
 
 const ReferenceItem = (props) => {
-  
   const [display, setDisplay] = useState(props.display);
-  const [id] = useState(props.id);
-  const [realDisplay, setRealDisplay] = useState(0);
 
-  const handleClickDisplay = (state_val) => {    
+  const handleClickDisplay = (state_val) => {
     setDisplay(state_val);
     const checkedItem_id = props.id;
     const updateData = { disponibilidade: state_val };
@@ -22,11 +19,9 @@ const ReferenceItem = (props) => {
       Authorization: `Bearer ${props.token}`,
     };
 
-    axios
-      .put(`${baseURL}/visitaprocedimento/${checkedItem_id}`, updateData, {
-        headers,
-      })
-       
+    axios.put(`${baseURL}/visitaprocedimento/${checkedItem_id}`, updateData, {
+      headers,
+    });
   };
 
   const longText = (
@@ -35,32 +30,36 @@ const ReferenceItem = (props) => {
       <div>id_a: {props.idA}</div>
       <div>id_b:{props.idB}</div>
       <div>display: {display}</div>
+      <div>Visita: {props.visit}</div>
+      <div>Procedimento:{props.procedure}</div>
     </div>
   );
 
-  {
-    return (
-      <td className="reference-item">
-        <Tooltip title={longText}>
-        <Stack direction="row" spacing={1} style={{ width: "inherit" }}>
-          <IconButton
-            aria-label="warning amber"
-            color={display == 2 ? "warning" : "default"}
-            onClick={() => {if(display==2)handleClickDisplay(0); else handleClickDisplay(2);}}
-          >
-            <WarningAmberIcon fontSize="small" />
-          </IconButton>
-          <IconButton
-            aria-label="check"
-            color={display == 1 ? "success" : "default"}
-            onClick={() => {if(display==1)handleClickDisplay(0); else handleClickDisplay(1);}}
-          >
-            <CheckCircleOutlineIcon fontSize="small" />
-          </IconButton>
-        </Stack>
-        </Tooltip>
-      </td>
-    );
-  }
+  return (
+    <Tooltip title={longText}>
+      <Stack direction="row" spacing={1} style={{ width: "inherit" }}>
+        <IconButton
+          aria-label="warning amber"
+          color={display === 2 ? "warning" : "default"}
+          onClick={() => {
+            if (display === 2) handleClickDisplay(0);
+            else handleClickDisplay(2);
+          }}
+        >
+          <WarningAmberIcon fontSize="small" />
+        </IconButton>
+        <IconButton
+          aria-label="check"
+          color={display === 1 ? "success" : "default"}
+          onClick={() => {
+            if (display === 1) handleClickDisplay(0);
+            else handleClickDisplay(1);
+          }}
+        >
+          <CheckCircleOutlineIcon fontSize="small" />
+        </IconButton>
+      </Stack>
+    </Tooltip>
+  );
 };
 export default ReferenceItem;

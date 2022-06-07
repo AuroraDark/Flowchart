@@ -25,10 +25,10 @@ import { countProcedure } from "../../redux/CountRowColumn/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { scrollX, scrollY } from "../../redux/ScrollPosition/actions";
 
-const ProcedureTable = (props) => {
+const ProcedureItem = (props) => {
   const [addOpen, setAddOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
-  const [procedure, setProcedure] = useState([]);
+  const [procedure, setProcedure] = useState(props.procedure);
   // let [procedureId, setProcedureId] = useState([]);
 
   const handleClickOpen_AddDialog = () => {
@@ -64,21 +64,8 @@ const ProcedureTable = (props) => {
   const storeValue = useSelector((store) => store);
 
   useEffect(() => {
-    axios
-      .get(`${baseURL}/protocoloprocedimento/?co_protocolo=77`, {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          Authorization: `Bearer ${props.token}`,
-        },
-      })
-      .then((res) => {
-        setProcedure(res.data);        
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [props.token]);
+    setProcedure(props.procedure);
+  }, [props.procedure]);
 
   // useEffect(() => {
   //   // console.log(storeValue.ScrollPosReducer.scrollPos_x, storeValue.ScrollPosReducer.scrollPos_y);
@@ -90,72 +77,28 @@ const ProcedureTable = (props) => {
   }, [procedure.length]);
 
   return (
-    <>
-      <TableContainer component={Paper}>
-        <Box
-          style={{
-            overflowY: "scroll",
-            height: "470px",
-            scrollbarWidth: "thin",
-          }}
-          sx={{
-            flexDirection: "row",
-            p: 1,
-            m: 1,
-            bgcolor: "background.paper",
-            borderRadius: 1,
-          }}
-          ref={y}
-        >
-          <Table>
-            <TableHead className="bar-shadow">
-              <TableRow>
-                <TableCell>
-                  <Button
-                    color="warning"
-                    variant="contained"
-                    style={{ textTransform: "none" }}
-                    endIcon={<AddCircleOutlinedIcon />}
-                    onClick={handleClickOpen_AddDialog}
-                  >
-                    Procedimento
-                  </Button>
-                </TableCell>
-                <TableCell>Categoria</TableCell>
-                <TableCell>Valor Estudo</TableCell>
-                <TableCell>Açoes</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {procedure.map((data, key) => (                        
-                <TableRow className="height-procedure" key={key} >
-                  <TableCell>{data.nome_procedimento_estudo}</TableCell>
-                  <TableCell></TableCell>
-                  <TableCell>{data.valor}</TableCell>
-                  <TableCell>
-                    <Stack direction="row" spacing={0}>
-                      <IconButton
-                        aria-label="edit"
-                        color="primary"
-                        onClick={handleClickOpen_EditDialog}
-                      >
-                        <EditIcon fontSize="small" />
-                      </IconButton>
-                      <IconButton
-                        aria-label="delete forever"
-                        style={{ color: red[500] }}
-                      >
-                        <DeleteForeverIcon />
-                      </IconButton>
-                    </Stack>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </Box>
-      </TableContainer>
-
+    <Table>
+      <TableRow className="height-procedure" key={procedure.id}>
+        <TableCell style={{ width: "245px" }}>
+          {procedure.nome_procedimento_estudo}
+        </TableCell>
+        <TableCell style={{ width: "145px" }}></TableCell>
+        <TableCell style={{ width: "75px" }}>{procedure.valor}</TableCell>
+        <TableCell style={{ width: "80px" }}>
+          <Stack direction="row" spacing={0}>
+            <IconButton
+              aria-label="edit"
+              color="primary"
+              onClick={handleClickOpen_EditDialog}
+            >
+              <EditIcon fontSize="small" />
+            </IconButton>
+            <IconButton aria-label="delete forever" style={{ color: red[500] }}>
+              <DeleteForeverIcon />
+            </IconButton>
+          </Stack>
+        </TableCell>
+      </TableRow>
       <AddProcedure
         handleClose_AddDialog={handleClose_AddDialog}
         addOpen={addOpen}
@@ -164,8 +107,8 @@ const ProcedureTable = (props) => {
         handleClose_EditDialog={handleClose_EditDialog}
         editOpen={editOpen}
       />
-    </>
+    </Table>
   );
 };
 
-export default ProcedureTable;
+export default ProcedureItem;
